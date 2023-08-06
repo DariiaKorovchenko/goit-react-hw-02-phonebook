@@ -11,26 +11,28 @@ export class App extends React.Component {
   };
 
   getContactListData = data => {
+    const currentContact = {
+      name: data.name,
+      number: data.number,
+      id: nanoid(),
+    };
     this.setState(prevState => {
       if (prevState.contacts.length === 0) {
         return {
-          contacts: [{ name: data.name, number: data.number, id: nanoid() }],
+          contacts: [currentContact],
         };
       } else {
         const including = prevState.contacts.some(contact =>
           contact.name.toLowerCase().includes(data.name.toLowerCase())
         );
         if (including) {
-          alert(`${data.namme} is already in contacts.`);
+          alert(`${data.name} is already in contacts.`);
           return {
             contacts: [...prevState.contacts],
           };
         } else {
           return {
-            contacts: [
-              ...prevState.contacts,
-              { name: data.name, number: data.number, id: nanoid() },
-            ],
+            contacts: [...prevState.contacts, currentContact],
           };
         }
       }
@@ -73,7 +75,7 @@ export class App extends React.Component {
         ) : (
           <ContactList
             contacts={this.visibleContacts()}
-            delete={this.deleteContact}
+            deleteContact={this.deleteContact}
           />
         )}
       </div>
