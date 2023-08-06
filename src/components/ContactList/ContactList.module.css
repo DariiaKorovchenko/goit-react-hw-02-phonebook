@@ -1,0 +1,13 @@
+.contact_item {
+  display: flex;
+}
+
+.delete_btn {
+  margin-left: 10px;
+  width: 70px;
+  height: 25px;
+}
+
+li {
+  margin-bottom: 10px;
+}

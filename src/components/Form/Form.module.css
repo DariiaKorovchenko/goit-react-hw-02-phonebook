@@ -1,0 +1,19 @@
+.main_form {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.form_input {
+  width: 150px;
+  height: 20px;
+  margin: 5px 0 10px 0;
+}
+
+button {
+  display: block;
+  width: 100px;
+  height: 30px;
+}

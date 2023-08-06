@@ -1,0 +1,9 @@
+.filter_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter_input {
+  width: 120px;
+  height: 17px;
+}
