@@ -16,27 +16,18 @@ export class App extends React.Component {
       number: data.number,
       id: nanoid(),
     };
-    this.setState(prevState => {
-      if (prevState.contacts.length === 0) {
+    const including = this.state.contacts.some(contact =>
+      contact.name.toLowerCase().includes(data.name.toLowerCase())
+    );
+    if (including) {
+      alert(`${data.name} is already in contacts.`);
+    } else {
+      this.setState(prevState => {
         return {
-          contacts: [currentContact],
+          contacts: [...prevState.contacts, currentContact],
         };
-      } else {
-        const including = prevState.contacts.some(contact =>
-          contact.name.toLowerCase().includes(data.name.toLowerCase())
-        );
-        if (including) {
-          alert(`${data.name} is already in contacts.`);
-          return {
-            contacts: [...prevState.contacts],
-          };
-        } else {
-          return {
-            contacts: [...prevState.contacts, currentContact],
-          };
-        }
-      }
-    });
+      });
+    }
   };
 
   changeFilter = event => {
@@ -70,7 +61,7 @@ export class App extends React.Component {
         {this.state.filter === null ? (
           <ContactList
             contacts={this.state.contacts}
-            delete={this.deleteContact}
+            deleteContact={this.deleteContact}
           />
         ) : (
           <ContactList
